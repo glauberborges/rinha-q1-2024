@@ -12,6 +12,17 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Setup PHP
+        uses: shivammathur/setup-php@master
+        with:
+          php-version: 8.3
+
+      - name: Version
+        run: php -v
+
+      - name: Install Dependencies
+        run: composer install --no-interaction --no-dev --optimize-autoloader
+
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
 
