@@ -20,7 +20,6 @@ services:
       - DB_PASSWORD=123
     ports:
       - "3001:9501"
-#    working_dir: /var/www/app
     command: |
       php /var/www/app/src/bin/hyperf.php server:watch
 #    command: bash -c "sleep infinity"
@@ -29,7 +28,7 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.6'
+          cpus: '0.5'
           memory: '185MB'
 
   api02:
@@ -68,7 +67,7 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.6'
+          cpus: '0.4'
           memory: '150MB'
 
 networks:
