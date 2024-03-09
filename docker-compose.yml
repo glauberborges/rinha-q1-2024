@@ -4,10 +4,11 @@ version: "3.5"
 services:
   api01: &api
     build:
-      context: ./.docker/prd
-      dockerfile: prd.Dockerfile
+      context: .
+      dockerfile: ./.docker/prd/prd.Dockerfile
     volumes:
       - ./:/var/www/app
+      - /var/www/app/src/vendor
     hostname: api01
     environment:
       - DB_HOST=db
@@ -19,6 +20,7 @@ services:
       - DB_PASSWORD=123
     ports:
       - "3001:9501"
+#    command: bash -c "sleep infinity"
     depends_on:
       - db
     deploy:

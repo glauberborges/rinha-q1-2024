@@ -14,13 +14,13 @@ RUN apt-get update && apt-get install -y \
 # Instale o Composer globalmente
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-RUN mkdir -p /var/www/app
 WORKDIR /var/www/app
 
 COPY . /var/www/app
 
-RUN if [ -f "composer.json" ]; then composer install --no-interaction --no-dev --optimize-autoloader; fi
+WORKDIR /var/www/app/src
+RUN composer install --no-interaction --no-dev --optimize-autoloader
+
 
 EXPOSE 9501
-
-CMD ["php", "/var/www/app/src/bin/hyperf.php", "start"]
+CMD ["php", "bin/hyperf.php", "start"]
