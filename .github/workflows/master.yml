@@ -21,7 +21,9 @@ jobs:
         run: php -v
 
       - name: Install Dependencies
-        run: composer install --no-interaction --no-dev --optimize-autoloader
+        run: |
+          cd src
+          composer install --no-interaction --no-dev --optimize-autoloader
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
