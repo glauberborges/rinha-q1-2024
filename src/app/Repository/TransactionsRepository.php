@@ -8,12 +8,12 @@ class TransactionsRepository
 {
 
     public function __construct(
-        private TransactionsModel $transactionsModel,
+        private readonly TransactionsModel $transactionsModel,
     )
     {
     }
 
-    public function getTransactionByClient(int $clientId, $limit = 10): array
+    public function getTransactionByClient(int $clientId, int $limit = 10)
     {
         $transactions = $this->transactionsModel
             ->where('cliente_id', $clientId)

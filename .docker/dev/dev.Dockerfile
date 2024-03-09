@@ -29,9 +29,10 @@ WORKDIR /var/www/app
 COPY . /var/www/app
 
 WORKDIR /var/www/app/src
-RUN composer install --no-interaction --no-dev --optimize-autoloader
+RUN composer install --no-interaction
 
 EXPOSE 9501
 
 # Comando para iniciar o servidor Hyperf quando o container é iniciado
-CMD ["php", "bin/hyperf.php", "server:watch"]
+WORKDIR /var/www/app
+CMD ["php", "/var/www/app/src/bin/hyperf.php", "server:watch"]

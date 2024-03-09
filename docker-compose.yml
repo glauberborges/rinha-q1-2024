@@ -5,7 +5,7 @@ services:
   api01: &api
     build:
       context: .
-      dockerfile: ./.docker/prd/prd.Dockerfile
+      dockerfile: ./.docker/dev/dev.Dockerfile
     volumes:
       - ./:/var/www/app
       - /var/www/app/src/vendor
@@ -20,14 +20,17 @@ services:
       - DB_PASSWORD=123
     ports:
       - "3001:9501"
+#    working_dir: /var/www/app
+    command: |
+      php /var/www/app/src/bin/hyperf.php server:watch
 #    command: bash -c "sleep infinity"
     depends_on:
       - db
     deploy:
       resources:
         limits:
-          cpus: '0.35'
-          memory: '65MB'
+          cpus: '0.6'
+          memory: '185MB'
 
   api02:
     <<: *api
@@ -47,8 +50,8 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.2'
-          memory: '60MB'
+          cpus: '0.1'
+          memory: '30MB'
 
   db:
     image: postgres:latest
@@ -66,7 +69,7 @@ services:
       resources:
         limits:
           cpus: '0.6'
-          memory: '360MB'
+          memory: '150MB'
 
 networks:
   default:

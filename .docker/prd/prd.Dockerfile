@@ -23,4 +23,4 @@ RUN composer install --no-interaction --no-dev --optimize-autoloader
 
 
 EXPOSE 9501
-CMD ["php", "bin/hyperf.php", "start"]
+CMD ["php", "/var/www/app/src/bin/hyperf.php", "start"]
